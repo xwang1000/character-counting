@@ -1,40 +1,22 @@
 // Input: a string
 // Output: an object that reports instances of each letter
 function countLetters(inputString) {
-  var report = {}
+  const report = {}
 
-  let inputArray = inputString.replace(/\s+/g, '').split('')
+  const joinedArray = inputString.split(' ').join('').split('')
 
   // iterate array
-  for(let i = 0; i < inputArray.length; i++) {
-    let currentCharacter = inputArray[i]
-    
-    // if the character is on the report
-    if (isKeyOnReport(currentCharacter, report)) {
-      report[currentCharacter]++
-    } else {
-      report[currentCharacter] = 1
+  joinedArray.forEach((el, i) => {
+    const currentCharacter = el
+
+    if(!report[currentCharacter]) {
+      report[currentCharacter] = 0
     }
-  }
-
-  console.log(report)
-  // iterate each character of the string
-    // for each character:
-      // if it is not in the outputObject,
-        // add it to the object
-      // else
-        // increment that property of the object
-
+    
+    report[currentCharacter]++
+  }) 
+  
   return report
 }
 
-function isKeyOnReport(key, report) {
-  let onReport = false
-  for (let property in report) {
-    if(property === key) {
-      onReport = true
-    }
-  }
-
-  return onReport
-}
+console.log(countLetters('love toronto'))
